@@ -1,79 +1,198 @@
-# 💰 WealthPulse — Personal Finance & Expense Intelligence Dashboard
+<div align="center">
 
-A full-stack, fintech-grade personal finance dashboard built with **React (Vite) + Tailwind CSS + Framer Motion + Recharts** on the frontend, and **Python FastAPI + SQLAlchemy + PostgreSQL** (with automatic SQLite zero-config fallback) + **JWT Authentication** on the backend.
+# 🏛️ WEALTHPULSE
+### Institutional Private Wealth & Financial Liquidity Terminal
 
----
+[![Live Demo](https://img.shields.io/badge/Live_App-wealthpulse.vercel.app-10B981?style=for-the-badge&logo=vercel&logoColor=white)](https://wealthpulse-expense-tracker.vercel.app/)
+[![API Status](https://img.shields.io/badge/API_Service-Render_Cloud-46E3B7?style=for-the-badge&logo=render&logoColor=black)](https://wealthpulse-api-rbj4.onrender.com/)
+[![Interactive Docs](https://img.shields.io/badge/Swagger_Docs-FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://wealthpulse-api-rbj4.onrender.com/docs)
+[![License: MIT](https://img.shields.io/badge/License-MIT-EAB308?style=for-the-badge)](LICENSE)
 
-## ✨ Key Features & Capabilities
-
-### 1. 🔐 Multi-User Authentication & Data Isolation
-- Secure JWT-based Authentication with password hashing (`bcrypt`).
-- Each user account has isolated transactions, category budgets, and analytics.
-- **1-Click Demo Account Login** directly on the landing page for instant evaluation.
-
-### 2. 📊 Interactive Visual Analytics Hub
-- **Category Donut Chart (Recharts)**: Interactive hover states, center dynamic totals, category legend chips, and toggle for Expense vs. Income.
-- **Cash Flow Trajectory (Recharts)**: Dual view modes (Monthly Bar Comparison vs. Net Flow Area gradient) showing 6-month historical trends.
-- **Fintech KPI Stats**: Animated counters for *Total Balance*, *Monthly Inflow*, *Monthly Outflow*, and *Savings Rate (%)*.
-
-### 3. 🎯 Budget Alert & Threshold Guard
-- Configure monthly spending ceilings per category (Food, Rent, Shopping, Investments, etc.).
-- Real-time status indicators:
-  - 🟢 **SAFE**: Spending < 80% of budget limit.
-  - 🟡 **WARNING**: Spending &ge; 80% and < 100% of budget limit.
-  - 🔴 **EXCEEDED / CRITICAL**: Spending &ge; 100% with glowing alert pulse.
-- Notification bell dropdown showing all active category warnings and overages.
-
-### 4. ⚡ Transaction Ledger & CSV Export
-- Instant live search by title, notes, and categories.
-- Multi-filtering by **Date Range**, **Category**, **Type (Income/Expense)**, and **Payment Method (UPI, Cards, Cash, Bank Transfer)**.
-- Pagination & inline Edit/Delete actions.
-- **1-Click Filtered CSV Export** streamed directly from the backend.
-
-### 5. 🚀 1-Click Demo Data Generator
-- Click **"Seed Demo Data"** to automatically populate 4 months of realistic financial transactions, salaries, SIPs, utilities, and budgets.
+<p align="center">
+  A full-stack, enterprise-grade personal finance terminal featuring real-time multi-currency exchange, high-precision SQL aggregations, budget risk telemetry, and auditable CSV ledger streams.
+</p>
 
 ---
 
-## 🛠️ Tech Stack
-
-| Layer | Technologies |
-|---|---|
-| **Frontend** | React 19 (Vite), Tailwind CSS v4, Framer Motion, Recharts, Lucide Icons, Axios, React Hot Toast, Canvas Confetti |
-| **Backend** | Python 3.13, FastAPI, SQLAlchemy 2.0, Pydantic v2, Pydantic Settings, Uvicorn, Python-Jose (JWT), Bcrypt |
-| **Database** | PostgreSQL (Primary) with automatic fallback to SQLite (`sqlite:///./expense_tracker.db`) |
+### 🌐 Live Deployments
+| Layer | Service | Deployment URL |
+| :--- | :--- | :--- |
+| **Frontend Client** | **Vercel Edge Network** | [https://wealthpulse-expense-tracker.vercel.app/](https://wealthpulse-expense-tracker.vercel.app/) |
+| **Backend REST API** | **Render Cloud** | [https://wealthpulse-api-rbj4.onrender.com/](https://wealthpulse-api-rbj4.onrender.com/) |
+| **Interactive API Specs** | **FastAPI Swagger UI** | [https://wealthpulse-api-rbj4.onrender.com/docs](https://wealthpulse-api-rbj4.onrender.com/docs) |
 
 ---
 
-## 🚀 How to Run the Application
+</div>
 
-### Option A: Using Helper Scripts
-1. Run `run_backend.bat` to start the backend on `http://localhost:8000`.
-2. Run `run_frontend.bat` to start the frontend on `http://localhost:5173`.
-3. Open `http://localhost:5173` in your browser.
+## 🛠️ Technology Stack & Badges
 
-### Option B: Manual Terminal Execution
+<div align="center">
 
-#### 1. Start the Backend:
+### Frontend Ecosystem
+![React 19](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Vite](https://img.shields.io/badge/Vite_6-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS_v4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)
+![Recharts](https://img.shields.io/badge/Recharts_Data_Viz-22B5BF?style=for-the-badge&logo=chartdotjs&logoColor=white)
+![Lucide](https://img.shields.io/badge/Lucide_Icons-F59E0B?style=for-the-badge)
+
+### Backend & Infrastructure
+![Python 3.12](https://img.shields.io/badge/Python_3.12-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy_ORM-D71F00?style=for-the-badge&logo=sqlalchemy&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT_Authentication-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)
+![Pydantic](https://img.shields.io/badge/Pydantic_v2-E92063?style=for-the-badge&logo=pydantic&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel_Hosting-000000?style=for-the-badge&logo=vercel&logoColor=white)
+![Render](https://img.shields.io/badge/Render_Cloud-46E3B7?style=for-the-badge&logo=render&logoColor=black)
+
+</div>
+
+---
+
+## 🏗️ System Architecture & Data Flow
+
+```mermaid
+flowchart TD
+    subgraph ClientLayer ["🖥️ Client Layer (Vercel Edge Global CDN)"]
+        UI["React 19 + Vite SPA"]
+        Theme["Obsidian Glassmorphism & Card Border Beam"]
+        Typewriter["Multi-Currency Typewriter Engine"]
+        CurCtx["CurrencyContext (INR, USD, EUR, GBP, JPY, KWD, AED)"]
+        RechartsEngine["Recharts Visual Analytics (Donut & Area Velocity)"]
+    end
+
+    subgraph SecurityGateway ["🛡️ Security & API Gateway"]
+        CORS["CORS Middleware (Cross-Origin Policy)"]
+        JWTGuard["JWT Bearer Token Validator"]
+        BcryptSec["Bcrypt Password Hashing & Ciphering"]
+    end
+
+    subgraph BackendCore ["⚡ Backend Core Engine (FastAPI on Render)"]
+        AuthRoute["/api/auth (Register, Login, Profile, Password)"]
+        TxRoute["/api/transactions (CRUD, Multi-Filter, Pagination)"]
+        BudRoute["/api/budgets (Threshold Telemetry Guard)"]
+        AnalyticsRoute["/api/analytics (SQL Aggregations & Seeder)"]
+        CSVStream["Streaming CSV Exporter"]
+    end
+
+    subgraph DatabaseLayer ["🗄️ Database & Persistence Layer"]
+        SQLAlchemy["SQLAlchemy ORM (Decimal 12,2 Precision)"]
+        PostgreSQL[("Managed PostgreSQL Database")]
+        SQLiteFallback[("Zero-Config SQLite Fallback")]
+    end
+
+    UI -->|HTTPS / REST API Requests| SecurityGateway
+    SecurityGateway -->|Authorized Request Context| BackendCore
+    BackendCore -->|ORM Queries & Aggregations| SQLAlchemy
+    SQLAlchemy -->|SQL Transactions| PostgreSQL
+    SQLAlchemy -.->|Offline / Local Fallback| SQLiteFallback
+```
+
+---
+
+## ✨ Core Key Features
+
+### 1. 🌍 Dynamic Global Multi-Currency Engine
+- Real-time exchange rate conversions and localized number formatting (`Intl.NumberFormat`) across 7 global currencies:
+  - 🇮🇳 **INR** (`₹` - Indian Rupee)
+  - 🇺🇸 **USD** (`$` - US Dollar)
+  - 🇪🇺 **EUR** (`€` - Euro)
+  - 🇬🇧 **GBP** (`£` - British Pound)
+  - 🇯🇵 **JPY** (`¥` - Japanese Yen, zero-decimal precision)
+  - 🇰🇼 **KWD** (`KD` - Kuwaiti Dinar, 3-decimal precision)
+  - 🇦🇪 **AED** (`AED` - UAE Dirham)
+- Switch currencies anytime via the header pill; charts, stat cards, and ledger rows convert instantaneously.
+
+### 2. 🏛️ Institutional Terminal Aesthetic
+- **Obsidian Dark Palette**: High-contrast `#05080c`, `#0a0f16`, and `#0e1622` surfaces accented with Vault Emerald (`#10b981`) and Champagne Gold (`#eab308`).
+- **Interactive Card Border Beam**: Moving your cursor across the screen dynamically illuminates the borders and corners of nearby cards with an ambient emerald-gold specular highlight.
+- **Precision Typography**: `JetBrains Mono` with tabular numeral alignment (`font-mono-num`), `Space Grotesk` display headings, and `Manrope` body font.
+
+### 3. 📊 Visual Analytics & Macro Cashflow
+- **Sector Allocation Donut (`Recharts`)**: Interactive hover slice detection, center summary label, and instant Expense/Income toggle.
+- **Cash Flow Velocity Wave (`Recharts`)**: Area gradient vs. monthly bar chart comparison for income vs. outflow trajectory.
+
+### 4. 🚨 Budget Risk Telemetry & Safeguards
+- Real-time telemetry monitoring category expenditure limits:
+  - 🟢 **Healthy / Safe** (< 80% used)
+  - 🟡 **Advisory Warning** (80% – 99% used)
+  - 🔴 **Ceiling Exceeded** ($\ge$ 100% with pulsating alert badge)
+- Interactive Notification Bell dropdown providing immediate risk breakdown.
+
+### 5. 📑 Treasury Ledger & CSV Export
+- Search transactions by memo, note, or recipient entity.
+- Multi-filtering by Category, Cashflow Type (Inflow/Outflow), Payment Method (UPI, Credit Card, Debit Card, Net Banking, Cash), and Date Range.
+- **1-Click Filtered CSV Export** streamed directly to client storage.
+
+### 6. 🔐 Multi-User Isolation & Security
+- Isolated accounts with salted `bcrypt` password hashing and signed `JWT` access tokens.
+- **1-Click Demo Evaluation Login** for instant evaluations.
+- **Account & Security Modal**: Update display name, view creation timestamps, and change access passwords.
+
+---
+
+## 📡 REST API Reference
+
+| Method | Endpoint | Description | Auth Required |
+| :--- | :--- | :--- | :---: |
+| `POST` | `/api/auth/register` | Register new user account (with optional 4-month sample ledger) | No |
+| `POST` | `/api/auth/login` | Authenticate credentials and receive signed JWT token | No |
+| `GET` | `/api/auth/me` | Fetch authenticated user profile & metadata | Yes |
+| `PUT` | `/api/auth/profile` | Update account display name | Yes |
+| `PUT` | `/api/auth/change-password` | Update account password with verification | Yes |
+| `GET` | `/api/transactions` | Query filtered & paginated transaction ledger records | Yes |
+| `POST` | `/api/transactions` | Post new transaction to ledger | Yes |
+| `PUT` | `/api/transactions/{id}` | Update existing transaction record | Yes |
+| `DELETE` | `/api/transactions/{id}` | Purge transaction record from ledger | Yes |
+| `GET` | `/api/transactions/export/csv` | Stream filtered transactions as `.csv` file | Yes |
+| `GET` | `/api/budgets` | Fetch monthly budget ceilings with active threshold statuses | Yes |
+| `POST` | `/api/budgets` | Create or update category monthly ceiling | Yes |
+| `DELETE` | `/api/budgets/{id}` | Disengage budget ceiling target | Yes |
+| `GET` | `/api/analytics/summary` | Compute net liquidity, monthly inflow, outflow, & savings rate | Yes |
+| `GET` | `/api/analytics/categories` | SQL aggregation of category disbursements & percentages | Yes |
+| `GET` | `/api/analytics/monthly-trend`| 6-month historical liquidity trajectory | Yes |
+| `POST` | `/api/analytics/seed` | Seed 4-month realistic sample transactions and budgets | Yes |
+
+---
+
+## 💻 Local Development Setup
+
+### Prerequisites
+- **Node.js** (v18+)
+- **Python** (v3.10+)
+- **PostgreSQL** (Optional — automatically falls back to SQLite if PostgreSQL is not active)
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/nilbanik/Wealthpulse-expense-tracker.git
+cd Wealthpulse-expense-tracker
+```
+
+### 2. Backend Setup
 ```bash
 cd backend
-..\venv\Scripts\uvicorn main:app --host 0.0.0.0 --port 8000 --reload
-```
-API Documentation (Swagger UI) is available at: `http://localhost:8000/docs`
+python -m venv venv
+# Windows:
+.\venv\Scripts\activate
+# Mac/Linux:
+source venv/bin/activate
 
-#### 2. Start the Frontend:
+pip install -r requirements.txt
+uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+```
+API will run at `http://localhost:8000` (Docs at `http://localhost:8000/docs`).
+
+### 3. Frontend Setup
 ```bash
-cd frontend
+cd ../frontend
+npm install
 npm run dev
 ```
-Access the application at `http://localhost:5173`
+Frontend will run at `http://localhost:5173`.
 
 ---
 
-## 🎤 Interview Talking Points & Architecture Highlights
-
-When discussing this project in interviews, highlight:
-1. **Financial Math & Precision**: Handled using `Numeric(12, 2)` / `Decimal` in Python backend and SQL schemas to prevent floating-point inaccuracy.
-2. **SQL Aggregations**: Efficient analytics endpoints leveraging `SUM(amount)`, `GROUP BY category`, `COUNT()`, and date extractions (`extract('year', date)`).
-3. **Optimistic UI & Responsive Design**: Snappy transitions, glassmorphic layout, fluid mobile/desktop breakpoints, and reactive chart re-rendering.
-4. **Resilient Database Layer**: Configured for production PostgreSQL while gracefully falling back to SQLite if PostgreSQL is offline during development.
+## 📄 License
+This project is open-source and available under the **MIT License**.
