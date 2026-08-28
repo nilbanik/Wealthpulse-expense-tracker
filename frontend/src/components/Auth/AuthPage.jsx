@@ -138,7 +138,7 @@ export const AuthPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-[#05080c] text-slate-100 relative overflow-hidden">
+    <div className="min-h-screen w-full flex items-center justify-center p-4 py-8 sm:py-12 bg-[#05080c] text-slate-100 relative overflow-y-auto overflow-x-hidden">
       <InteractiveCursorGlow />
       
       {/* Institutional Ambient Background Glows */}

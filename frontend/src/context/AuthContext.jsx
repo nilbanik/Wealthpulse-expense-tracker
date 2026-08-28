@@ -107,6 +107,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
+    document.body.style.overflow = 'unset';
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     setToken(null);
