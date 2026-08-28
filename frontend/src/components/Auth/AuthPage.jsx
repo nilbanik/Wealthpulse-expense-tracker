@@ -138,7 +138,7 @@ export const AuthPage = () => {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center p-4 py-8 sm:py-12 bg-[#05080c] text-slate-100 relative overflow-y-auto overflow-x-hidden">
+    <div className="min-h-screen w-full bg-[#05080c] text-slate-100 relative flex flex-col justify-start items-center py-6 sm:py-12 px-4 pb-20 overflow-x-hidden">
       <InteractiveCursorGlow />
       
       {/* Institutional Ambient Background Glows */}
@@ -146,7 +146,7 @@ export const AuthPage = () => {
       <div className="absolute bottom-1/4 right-1/4 w-[450px] h-[450px] bg-yellow-600/10 rounded-full blur-[130px] pointer-events-none"></div>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-teal-900/10 rounded-full blur-[160px] pointer-events-none"></div>
 
-      <div className="w-full max-w-4xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center z-10">
+      <div className="w-full max-w-4xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center z-10 my-auto">
         
         {/* Left Side: Institutional Value Proposition & Multi-Currency Typewriter */}
         <div className="lg:col-span-6 space-y-6 text-center lg:text-left">
