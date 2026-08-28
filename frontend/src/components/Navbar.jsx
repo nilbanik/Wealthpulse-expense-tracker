@@ -15,7 +15,11 @@ import {
   Coins,
   ShieldAlert,
   ChevronDown,
-  Check
+  Check,
+  Menu,
+  X,
+  Settings,
+  DollarSign
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
@@ -35,6 +39,7 @@ export const Navbar = ({
   const [showNotifications, setShowNotifications] = useState(false);
   const [showMonthDropdown, setShowMonthDropdown] = useState(false);
   const [showCurrencyDropdown, setShowCurrencyDropdown] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSeeding, setIsSeeding] = useState(false);
   
   const monthDropdownRef = useRef(null);
@@ -57,6 +62,15 @@ export const Navbar = ({
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  // Prevent scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [isMobileMenuOpen]);
 
   const generateMonthOptions = () => {
     const options = [];
@@ -83,6 +97,7 @@ export const Navbar = ({
         origin: { y: 0.2 },
         colors: ['#10B981', '#EAB308', '#34D399', '#FBBF24']
       });
+      if (isMobileMenuOpen) setIsMobileMenuOpen(false);
     } finally {
       setIsSeeding(false);
     }
@@ -92,14 +107,12 @@ export const Navbar = ({
 
   return (
     <header className="sticky top-0 z-40 border-b border-[#172334] bg-[#05080c]/95 backdrop-blur-2xl">
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2.5 sm:py-0">
-        
-        {/* Top Bar Row */}
-        <div className="flex items-center justify-between h-12 sm:h-16 gap-2">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
           
-          {/* Brand Logo */}
-          <div className="flex items-center space-x-2 sm:space-x-3 shrink-0">
-            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-emerald-600 via-emerald-700 to-yellow-600/80 flex items-center justify-center shadow-lg shadow-emerald-950/60 ring-1 ring-emerald-400/30 shrink-0">
+          {/* 1. Brand Logo */}
+          <div className="flex items-center space-x-2.5 sm:space-x-3 shrink-0">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-emerald-600 via-emerald-700 to-yellow-600/80 flex items-center justify-center shadow-lg shadow-emerald-950/60 ring-1 ring-emerald-400/30 shrink-0">
               <Vault className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-100" />
             </div>
             <div>
@@ -107,20 +120,20 @@ export const Navbar = ({
                 <span className="text-base sm:text-lg font-extrabold tracking-tight font-display bg-clip-text text-transparent bg-gradient-to-r from-emerald-300 via-yellow-200 to-amber-400">
                   WEALTHPULSE
                 </span>
-                <span className="hidden lg:inline-block px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded">
+                <span className="hidden xl:inline-block px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded">
                   Multi-Currency
                 </span>
               </div>
-              <p className="hidden xl:block text-[10px] text-slate-500 uppercase tracking-widest font-semibold font-mono-num">
+              <p className="hidden 2xl:block text-[10px] text-slate-500 uppercase tracking-widest font-semibold font-mono-num">
                 Private Finance & Liquidity Terminal
               </p>
             </div>
           </div>
 
-          {/* Desktop Controls (Hidden on mobile < sm, visible on tablet/desktop) */}
-          <div className="hidden sm:flex items-center space-x-2 md:space-x-3 shrink-0">
+          {/* 2. Desktop Controls (Visible on md+ screens) */}
+          <div className="hidden md:flex items-center space-x-2 lg:space-x-3 shrink-0">
             
-            {/* Desktop Month Dropdown */}
+            {/* Month Dropdown */}
             <div className="relative" ref={monthDropdownRef}>
               <button
                 type="button"
@@ -146,7 +159,7 @@ export const Navbar = ({
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -6, scale: 0.96 }}
                     transition={{ duration: 0.18 }}
-                    className="absolute left-0 mt-2 w-48 rounded-2xl bg-[#080d14]/95 backdrop-blur-2xl border border-[#22344a] shadow-2xl shadow-black/80 p-1.5 z-50 max-h-72 overflow-y-auto"
+                    className="absolute left-0 mt-2 w-48 rounded-2xl bg-[#080d14]/95 backdrop-blur-2xl border border-[#22344a] shadow-2xl p-1.5 z-50 max-h-72 overflow-y-auto"
                   >
                     <div className="text-[10px] font-bold uppercase tracking-widest text-slate-500 px-3 py-1.5 font-mono-num border-b border-[#141f2e] mb-1">
                       Fiscal Month
@@ -177,7 +190,7 @@ export const Navbar = ({
               </AnimatePresence>
             </div>
 
-            {/* Desktop Currency Badge Dropdown */}
+            {/* Currency Badge Dropdown */}
             <div className="relative" ref={currencyDropdownRef}>
               <button
                 type="button"
@@ -207,7 +220,7 @@ export const Navbar = ({
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -6, scale: 0.96 }}
                     transition={{ duration: 0.18 }}
-                    className="absolute left-0 mt-2 w-56 rounded-2xl bg-[#080d14]/95 backdrop-blur-2xl border border-[#22344a] shadow-2xl shadow-black/80 p-1.5 z-50 max-h-80 overflow-y-auto"
+                    className="absolute left-0 mt-2 w-56 rounded-2xl bg-[#080d14]/95 backdrop-blur-2xl border border-[#22344a] shadow-2xl p-1.5 z-50 max-h-80 overflow-y-auto"
                   >
                     <div className="text-[10px] font-bold uppercase tracking-widest text-slate-500 px-3 py-1.5 font-mono-num border-b border-[#141f2e] mb-1">
                       Select Currency
@@ -246,7 +259,7 @@ export const Navbar = ({
               </AnimatePresence>
             </div>
 
-            {/* Seed Data Button */}
+            {/* Seed Demo Button */}
             <button
               onClick={handleSeed}
               disabled={isSeeding}
@@ -257,23 +270,23 @@ export const Navbar = ({
             </button>
           </div>
 
-          {/* Right Header Action Icons */}
-          <div className="flex items-center space-x-1.5 sm:space-x-2 shrink-0">
+          {/* 3. Right Action Items */}
+          <div className="flex items-center space-x-2 sm:space-x-2.5 shrink-0">
             
-            {/* Quick Add Transaction Button */}
+            {/* Quick Add Entry */}
             <button
               onClick={onOpenAddModal}
-              className="flex items-center space-x-1 sm:space-x-1.5 px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-black text-xs font-bold shadow-lg shadow-emerald-950/40 transition-all cursor-pointer shrink-0"
+              className="flex items-center space-x-1.5 px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-black text-xs sm:text-sm font-bold shadow-lg shadow-emerald-950/40 transition-all cursor-pointer shrink-0"
             >
               <Plus className="w-4 h-4 stroke-[2.5]" />
-              <span className="hidden md:inline">Record Entry</span>
+              <span className="hidden sm:inline">Record Entry</span>
             </button>
 
             {/* Notification Bell */}
             <div className="relative shrink-0" ref={notifDropdownRef}>
               <button
                 onClick={() => setShowNotifications(!showNotifications)}
-                className="relative p-1.5 sm:p-2 rounded-xl bg-[#0a0f16] hover:bg-[#121b27] border border-[#1e2d42] text-slate-300 transition-colors cursor-pointer"
+                className="relative p-2 rounded-xl bg-[#0a0f16] hover:bg-[#121b27] border border-[#1e2d42] text-slate-300 transition-colors cursor-pointer"
                 title="Budget Alert Center"
               >
                 <Bell className="w-4 h-4 text-slate-300" />
@@ -357,146 +370,165 @@ export const Navbar = ({
               </AnimatePresence>
             </div>
 
-            {/* Profile Avatar */}
+            {/* Desktop User Avatar & Logout (Hidden on mobile) */}
+            <div className="hidden md:flex items-center pl-2 border-l border-[#1e2d42] space-x-2">
+              <button
+                type="button"
+                onClick={onOpenProfile}
+                className="flex items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer text-left"
+                title="Manage Account Settings"
+              >
+                <div className="hidden lg:flex flex-col text-right">
+                  <span className="text-xs font-bold text-slate-200 truncate max-w-[100px]">{user?.name || 'Account'}</span>
+                  <span className="text-[10px] text-slate-400 truncate max-w-[100px] font-mono-num">{user?.email}</span>
+                </div>
+                <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-emerald-700 to-slate-900 border border-emerald-500/30 flex items-center justify-center text-emerald-300 font-bold text-xs font-display shadow-inner">
+                  {user?.name ? user.name.charAt(0).toUpperCase() : <UserIcon className="w-4 h-4" />}
+                </div>
+              </button>
+              <button
+                onClick={logout}
+                className="p-2 rounded-xl bg-[#0a0f16] hover:bg-rose-500/20 hover:text-rose-400 border border-[#1e2d42] text-slate-400 transition-colors cursor-pointer"
+                title="Disconnect Session"
+              >
+                <LogOut className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* 🍔 Mobile Hamburger Menu Button (Shown on mobile < md) */}
             <button
               type="button"
-              onClick={onOpenProfile}
-              className="w-8 h-8 rounded-xl bg-gradient-to-br from-emerald-700 to-slate-900 border border-emerald-500/30 flex items-center justify-center text-emerald-300 font-bold text-xs font-display shadow-inner shrink-0 hover:opacity-80 transition-opacity cursor-pointer"
-              title="Manage Account Settings"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden p-2 rounded-xl bg-[#0a0f16] hover:bg-[#121b27] border border-[#1e2d42] text-slate-200 transition-colors cursor-pointer"
+              title="Open Navigation Menu"
             >
-              {user?.name ? user.name.charAt(0).toUpperCase() : <UserIcon className="w-4 h-4" />}
-            </button>
-
-            {/* Logout Button */}
-            <button
-              onClick={logout}
-              className="p-1.5 sm:p-2 rounded-xl bg-[#0a0f16] hover:bg-rose-500/20 hover:text-rose-400 border border-[#1e2d42] text-slate-400 transition-colors cursor-pointer shrink-0"
-              title="Disconnect Session"
-            >
-              <LogOut className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
 
           </div>
 
         </div>
-
-        {/* 📱 Mobile Sub-Bar for Month & Currency (Shown ONLY on mobile screens < 640px) */}
-        <div className="flex sm:hidden items-center justify-between gap-2 pt-2 border-t border-[#131c2a]/80">
-          
-          {/* Mobile Month Dropdown */}
-          <div className="relative flex-1" ref={monthDropdownRef}>
-            <button
-              type="button"
-              onClick={() => {
-                setShowMonthDropdown(!showMonthDropdown);
-                setShowCurrencyDropdown(false);
-              }}
-              className="w-full flex items-center justify-between px-3 py-1.5 rounded-xl bg-[#0a0f16] border border-[#1e2d42] text-xs font-semibold text-slate-200 cursor-pointer shadow-sm"
-            >
-              <div className="flex items-center space-x-1.5">
-                <Calendar className="w-3.5 h-3.5 text-emerald-400" />
-                <span className="font-display text-xs">{currentMonthLabel}</span>
-              </div>
-              <ChevronDown className="w-3 h-3 text-slate-400" />
-            </button>
-
-            <AnimatePresence>
-              {showMonthDropdown && (
-                <motion.div
-                  initial={{ opacity: 0, y: -6, scale: 0.96 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -6, scale: 0.96 }}
-                  transition={{ duration: 0.18 }}
-                  className="absolute left-0 mt-1 w-full rounded-2xl bg-[#080d14]/98 backdrop-blur-2xl border border-[#22344a] shadow-2xl p-1.5 z-50 max-h-60 overflow-y-auto"
-                >
-                  {monthOptions.map((opt) => {
-                    const isSelected = opt.val === selectedMonth;
-                    return (
-                      <button
-                        key={opt.val}
-                        type="button"
-                        onClick={() => {
-                          setSelectedMonth(opt.val);
-                          setShowMonthDropdown(false);
-                        }}
-                        className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
-                          isSelected
-                            ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-bold'
-                            : 'text-slate-300 hover:bg-[#121c2a]'
-                        }`}
-                      >
-                        <span className="font-display">{opt.label}</span>
-                        {isSelected && <Check className="w-3.5 h-3.5 text-emerald-400 stroke-[3]" />}
-                      </button>
-                    );
-                  })}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-          {/* Mobile Currency Dropdown */}
-          <div className="relative flex-1" ref={currencyDropdownRef}>
-            <button
-              type="button"
-              onClick={() => {
-                setShowCurrencyDropdown(!showCurrencyDropdown);
-                setShowMonthDropdown(false);
-              }}
-              className="w-full flex items-center justify-between px-3 py-1.5 rounded-xl bg-[#0a0f16] border border-[#1e2d42] text-xs font-semibold text-slate-200 cursor-pointer shadow-sm"
-            >
-              <div className="flex items-center space-x-1.5">
-                <span className="w-4 h-4 rounded bg-yellow-500/15 text-yellow-400 font-mono-num font-extrabold text-[10px] border border-yellow-500/25 flex items-center justify-center">
-                  {currentCurrencyInfo.symbol}
-                </span>
-                <span className="font-display font-bold text-xs">{currentCurrencyInfo.code}</span>
-              </div>
-              <ChevronDown className="w-3 h-3 text-slate-400" />
-            </button>
-
-            <AnimatePresence>
-              {showCurrencyDropdown && (
-                <motion.div
-                  initial={{ opacity: 0, y: -6, scale: 0.96 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -6, scale: 0.96 }}
-                  transition={{ duration: 0.18 }}
-                  className="absolute right-0 mt-1 w-full rounded-2xl bg-[#080d14]/98 backdrop-blur-2xl border border-[#22344a] shadow-2xl p-1.5 z-50 max-h-64 overflow-y-auto"
-                >
-                  {Object.values(currencies).map((curr) => {
-                    const isSelected = curr.code === currency;
-                    return (
-                      <button
-                        key={curr.code}
-                        type="button"
-                        onClick={() => {
-                          setCurrency(curr.code);
-                          setShowCurrencyDropdown(false);
-                        }}
-                        className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs transition-all cursor-pointer ${
-                          isSelected
-                            ? 'bg-yellow-500/15 text-yellow-300 border border-yellow-500/30 font-bold'
-                            : 'text-slate-300 hover:bg-[#121c2a]'
-                        }`}
-                      >
-                        <div className="flex items-center space-x-2">
-                          <span className="w-5 h-5 rounded bg-[#05080c] border border-yellow-500/25 text-yellow-400 font-mono-num font-extrabold text-xs flex items-center justify-center shrink-0">
-                            {curr.symbol}
-                          </span>
-                          <span className="font-display font-bold text-white text-xs">{curr.code}</span>
-                        </div>
-                        {isSelected && <Check className="w-3.5 h-3.5 text-yellow-400 stroke-[3]" />}
-                      </button>
-                    );
-                  })}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-        </div>
-
       </div>
+
+      {/* 📱 Slide-Down Mobile Drawer Menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25, ease: 'easeInOut' }}
+            className="md:hidden border-t border-[#172334] bg-[#080d14]/98 backdrop-blur-3xl px-4 py-5 space-y-4 max-h-[85vh] overflow-y-auto"
+          >
+            {/* User Profile Card */}
+            <div className="p-3.5 rounded-2xl bg-[#0d1420] border border-[#22344a] flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-700 to-slate-900 border border-emerald-500/30 flex items-center justify-center text-emerald-300 font-bold text-sm font-display">
+                  {user?.name ? user.name.charAt(0).toUpperCase() : <UserIcon className="w-4 h-4" />}
+                </div>
+                <div>
+                  <div className="font-bold text-xs text-white">{user?.name || 'Account'}</div>
+                  <div className="text-[10px] text-slate-400 font-mono-num truncate max-w-[170px]">{user?.email}</div>
+                </div>
+              </div>
+
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  onOpenProfile();
+                }}
+                className="px-2.5 py-1 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/25 text-[11px] font-bold flex items-center space-x-1 cursor-pointer"
+              >
+                <Settings className="w-3 h-3" />
+                <span>Edit</span>
+              </button>
+            </div>
+
+            {/* Fiscal Period Selector */}
+            <div>
+              <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5 font-display">
+                Select Fiscal Period
+              </label>
+              <div className="grid grid-cols-2 gap-1.5">
+                {monthOptions.slice(0, 6).map((opt) => {
+                  const isSelected = opt.val === selectedMonth;
+                  return (
+                    <button
+                      key={opt.val}
+                      onClick={() => {
+                        setSelectedMonth(opt.val);
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className={`p-2 rounded-xl text-xs font-semibold flex items-center justify-between border transition-all cursor-pointer ${
+                        isSelected
+                          ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40 font-bold'
+                          : 'bg-[#0a0f16] text-slate-300 border-[#1a2636]'
+                      }`}
+                    >
+                      <span>{opt.label}</span>
+                      {isSelected && <Check className="w-3 h-3 text-emerald-400" />}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Currency Selector */}
+            <div>
+              <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5 font-display">
+                Active Portfolio Currency
+              </label>
+              <div className="grid grid-cols-3 sm:grid-cols-4 gap-1.5">
+                {Object.values(currencies).map((curr) => {
+                  const isSelected = curr.code === currency;
+                  return (
+                    <button
+                      key={curr.code}
+                      onClick={() => {
+                        setCurrency(curr.code);
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className={`p-2 rounded-xl text-xs font-semibold flex flex-col items-center justify-center border transition-all cursor-pointer ${
+                        isSelected
+                          ? 'bg-yellow-500/20 text-yellow-300 border-yellow-500/40 font-bold shadow-sm'
+                          : 'bg-[#0a0f16] text-slate-300 border-[#1a2636]'
+                      }`}
+                    >
+                      <span className="text-yellow-400 font-mono-num font-bold text-xs">{curr.symbol}</span>
+                      <span className="text-[10px]">{curr.code}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Quick Actions & Logout */}
+            <div className="pt-2 border-t border-[#1a2636] space-y-2">
+              <button
+                onClick={handleSeed}
+                disabled={isSeeding}
+                className="w-full py-2.5 rounded-xl bg-[#0a0f16] hover:bg-[#121b27] border border-yellow-500/30 text-xs font-bold text-yellow-300 flex items-center justify-center space-x-2 transition-all cursor-pointer"
+              >
+                <Coins className={`w-3.5 h-3.5 text-yellow-400 ${isSeeding ? 'animate-spin' : ''}`} />
+                <span>{isSeeding ? 'Seeding 4 Months Data...' : 'Seed 4-Month Sample Ledger'}</span>
+              </button>
+
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  logout();
+                }}
+                className="w-full py-2.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-xs font-bold text-rose-300 flex items-center justify-center space-x-2 transition-all cursor-pointer"
+              >
+                <LogOut className="w-3.5 h-3.5 text-rose-400" />
+                <span>Disconnect Session</span>
+              </button>
+            </div>
+
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </header>
   );
 };
