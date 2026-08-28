@@ -262,9 +262,39 @@ export function DashboardContent() {
         onClose={() => setIsProfileModalOpen(false)}
       />
 
-      {/* Footer */}
-      <footer className="border-t border-[#131c2a] bg-[#05080c]/90 backdrop-blur-md py-6 text-center text-xs text-slate-500 font-mono-num relative z-20">
-        <p>WEALTHPULSE &bull; Institutional Financial Terminal &bull; Multi-User PostgreSQL &bull; React & Tailwind</p>
+      {/* Modern Institutional Footer */}
+      <footer className="border-t border-[#141f2e] bg-[#05080c]/95 backdrop-blur-xl py-6 relative z-20 mt-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          
+          {/* Left: Brand Identity & Status */}
+          <div className="flex items-center space-x-3 text-left">
+            <div className="w-7 h-7 rounded-lg bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center text-emerald-400">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            </div>
+            <div>
+              <div className="flex items-center space-x-2">
+                <span className="font-extrabold text-xs text-slate-200 font-display tracking-tight">WEALTHPULSE</span>
+                <span className="text-[10px] text-emerald-400 font-mono-num font-semibold">● 256-bit Encrypted</span>
+              </div>
+              <p className="text-[10px] text-slate-500 font-medium">Institutional Private Wealth & Liquidity Terminal</p>
+            </div>
+          </div>
+
+          {/* Center: System Architecture Specs */}
+          <div className="flex items-center space-x-2 text-[11px] text-slate-400 font-mono-num">
+            <span>FastAPI Core</span>
+            <span className="text-slate-600">&bull;</span>
+            <span>PostgreSQL Engine</span>
+            <span className="text-slate-600">&bull;</span>
+            <span>React 19 Vite</span>
+          </div>
+
+          {/* Right: Copyright */}
+          <div className="text-right text-[10px] text-slate-500 font-mono-num">
+            <p>&copy; {new Date().getFullYear()} WealthPulse Terminal. All rights reserved.</p>
+          </div>
+
+        </div>
       </footer>
     </div>
   );
