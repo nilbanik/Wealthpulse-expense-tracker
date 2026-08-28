@@ -270,30 +270,31 @@ export const Navbar = ({
             </button>
           </div>
 
-          {/* 3. Right Action Items */}
-          <div className="flex items-center space-x-2 sm:space-x-2.5 shrink-0">
+          {/* 3. Right Action Items - Uniformly Sized & Aligned */}
+          <div className="flex items-center space-x-1.5 sm:space-x-2.5 shrink-0">
             
-            {/* Quick Add Entry */}
+            {/* Quick Add Entry Button - Uniform h-9 on mobile, h-10 on desktop */}
             <button
               onClick={onOpenAddModal}
-              className="flex items-center space-x-1.5 px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-black text-xs sm:text-sm font-bold shadow-lg shadow-emerald-950/40 transition-all cursor-pointer shrink-0"
+              className="h-9 sm:h-10 px-3 sm:px-3.5 rounded-xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-black text-xs sm:text-sm font-bold shadow-md shadow-emerald-950/40 transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer shrink-0 flex items-center justify-center space-x-1.5"
+              title="Record New Transaction Entry"
             >
               <Plus className="w-4 h-4 stroke-[2.5]" />
               <span className="hidden sm:inline">Record Entry</span>
             </button>
 
-            {/* Notification Bell */}
+            {/* Notification Bell - Uniform w-9 h-9 on mobile, w-10 h-10 on desktop */}
             <div className="relative shrink-0" ref={notifDropdownRef}>
               <button
                 onClick={() => setShowNotifications(!showNotifications)}
-                className="relative p-2 rounded-xl bg-[#0a0f16] hover:bg-[#121b27] border border-[#1e2d42] text-slate-300 transition-colors cursor-pointer"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#0a0f16] hover:bg-[#121b27] border border-[#1e2d42] text-slate-300 transition-colors cursor-pointer flex items-center justify-center"
                 title="Budget Alert Center"
               >
                 <Bell className="w-4 h-4 text-slate-300" />
                 {activeAlertsCount > 0 && (
                   <span className="absolute -top-1 -right-1 flex h-4 w-4">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-4 w-4 bg-rose-500 text-[10px] font-bold text-white items-center justify-center">
+                    <span className="relative inline-flex rounded-full h-4 w-4 bg-rose-500 text-[10px] font-bold text-white items-center justify-center font-mono-num">
                       {activeAlertsCount}
                     </span>
                   </span>
@@ -382,27 +383,27 @@ export const Navbar = ({
                   <span className="text-xs font-bold text-slate-200 truncate max-w-[100px]">{user?.name || 'Account'}</span>
                   <span className="text-[10px] text-slate-400 truncate max-w-[100px] font-mono-num">{user?.email}</span>
                 </div>
-                <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-emerald-700 to-slate-900 border border-emerald-500/30 flex items-center justify-center text-emerald-300 font-bold text-xs font-display shadow-inner">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-700 to-slate-900 border border-emerald-500/30 flex items-center justify-center text-emerald-300 font-bold text-xs font-display shadow-inner">
                   {user?.name ? user.name.charAt(0).toUpperCase() : <UserIcon className="w-4 h-4" />}
                 </div>
               </button>
               <button
                 onClick={logout}
-                className="p-2 rounded-xl bg-[#0a0f16] hover:bg-rose-500/20 hover:text-rose-400 border border-[#1e2d42] text-slate-400 transition-colors cursor-pointer"
+                className="w-10 h-10 rounded-xl bg-[#0a0f16] hover:bg-rose-500/20 hover:text-rose-400 border border-[#1e2d42] text-slate-400 transition-colors cursor-pointer flex items-center justify-center"
                 title="Disconnect Session"
               >
                 <LogOut className="w-4 h-4" />
               </button>
             </div>
 
-            {/* 🍔 Hamburger Menu Button (Active on ALL Mobile & iPad / Tablet screens < 1024px) */}
+            {/* 🍔 Hamburger Menu Button - Uniform w-9 h-9 on mobile, w-10 h-10 on tablet */}
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 rounded-xl bg-[#0a0f16] hover:bg-[#121b27] border border-[#1e2d42] text-slate-200 transition-colors cursor-pointer flex items-center justify-center"
+              className="lg:hidden w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#0a0f16] hover:bg-[#121b27] border border-[#1e2d42] text-slate-200 transition-colors cursor-pointer flex items-center justify-center shrink-0"
               title="Open Navigation Menu"
             >
-              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isMobileMenuOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5" />}
             </button>
 
           </div>
