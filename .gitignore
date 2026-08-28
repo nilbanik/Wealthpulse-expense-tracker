@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+venv/
+.venv/
+env/
+__pycache__/
+*/__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment Variables
+.env
+backend/.env
+frontend/.env
+*.env.local
+
+# Databases & Local state
+*.db
+*.sqlite
+*.sqlite3
+expense_tracker.db
+backend/expense_tracker.db
+
+# Build Artifacts
+frontend/dist/
+dist/
+build/
+.output/
+
+# IDE & OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log

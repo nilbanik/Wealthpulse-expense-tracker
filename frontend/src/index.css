@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    background-color: #05080c;
+    color: #e2e8f0;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11", "tnum";
+    letter-spacing: -0.01em;
+  }
+}
+
+/* Custom Terminal scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #05080c;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #1a2536;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #27374d;
+}
+
+/* 
+  Luxury Card-Level Cursor Spotlight (Linear / Stripe / Vercel design system)
+  The borders & subtle surface of each card dynamically catch specular light from cursor coordinates
+*/
+.glass-card {
+  position: relative;
+  background: linear-gradient(180deg, rgba(13, 20, 30, 0.75) 0%, rgba(9, 14, 22, 0.85) 100%);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(28, 42, 60, 0.7);
+  border-radius: 1rem;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+}
+
+.glass-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(
+    450px circle at var(--mouse-x, -2000px) var(--mouse-y, -2000px),
+    rgba(52, 211, 153, 0.45) 0%,
+    rgba(234, 179, 8, 0.25) 30%,
+    transparent 65%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.9;
+  z-index: 1;
+}
+
+.glass-card:hover {
+  border-color: rgba(52, 211, 153, 0.35);
+  box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.7), 0 0 25px -8px rgba(16, 185, 129, 0.12);
+  transform: translateY(-1px);
+}
+
+.glass-panel {
+  background: linear-gradient(180deg, rgba(14, 22, 34, 0.95) 0%, rgba(10, 15, 22, 0.98) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(34, 52, 74, 0.65);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8);
+}
