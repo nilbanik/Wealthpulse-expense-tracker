@@ -273,14 +273,14 @@ export const Navbar = ({
           {/* 3. Right Action Items - Uniformly Sized & Aligned */}
           <div className="flex items-center space-x-1.5 sm:space-x-2.5 shrink-0">
             
-            {/* Quick Add Entry Button - Uniform h-9 on mobile, h-10 on desktop */}
+            {/* Quick Add Entry Button - Exact square matching Bell & Hamburger on mobile/tablet, expands on PC */}
             <button
               onClick={onOpenAddModal}
-              className="h-9 sm:h-10 px-3 sm:px-3.5 rounded-xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-black text-xs sm:text-sm font-bold shadow-md shadow-emerald-950/40 transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer shrink-0 flex items-center justify-center space-x-1.5"
+              className="w-9 h-9 sm:w-10 sm:h-10 lg:w-auto lg:px-4 rounded-xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-black text-xs sm:text-sm font-bold shadow-md shadow-emerald-950/40 transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer shrink-0 flex items-center justify-center space-x-2"
               title="Record New Transaction Entry"
             >
-              <Plus className="w-4 h-4 stroke-[2.5]" />
-              <span className="hidden sm:inline">Record Entry</span>
+              <Plus className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5]" />
+              <span className="hidden lg:inline">Record Entry</span>
             </button>
 
             {/* Notification Bell - Uniform w-9 h-9 on mobile, w-10 h-10 on desktop */}
