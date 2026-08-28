@@ -63,7 +63,7 @@ export const Navbar = ({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Prevent scroll when mobile menu is open
+  // Prevent background scroll when mobile/tablet menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -130,10 +130,10 @@ export const Navbar = ({
             </div>
           </div>
 
-          {/* 2. Desktop Controls (Visible on md+ screens) */}
-          <div className="hidden md:flex items-center space-x-2 lg:space-x-3 shrink-0">
+          {/* 2. PC / Desktop Controls (Visible ONLY on PC screens >= 1024px) */}
+          <div className="hidden lg:flex items-center space-x-2.5 xl:space-x-3 shrink-0">
             
-            {/* Month Dropdown */}
+            {/* Desktop Month Dropdown */}
             <div className="relative" ref={monthDropdownRef}>
               <button
                 type="button"
@@ -190,7 +190,7 @@ export const Navbar = ({
               </AnimatePresence>
             </div>
 
-            {/* Currency Badge Dropdown */}
+            {/* Desktop Currency Badge Dropdown */}
             <div className="relative" ref={currencyDropdownRef}>
               <button
                 type="button"
@@ -370,15 +370,15 @@ export const Navbar = ({
               </AnimatePresence>
             </div>
 
-            {/* Desktop User Avatar & Logout (Hidden on mobile) */}
-            <div className="hidden md:flex items-center pl-2 border-l border-[#1e2d42] space-x-2">
+            {/* PC User Avatar & Logout (Visible on PC >= 1024px) */}
+            <div className="hidden lg:flex items-center pl-2 border-l border-[#1e2d42] space-x-2">
               <button
                 type="button"
                 onClick={onOpenProfile}
                 className="flex items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer text-left"
                 title="Manage Account Settings"
               >
-                <div className="hidden lg:flex flex-col text-right">
+                <div className="hidden xl:flex flex-col text-right">
                   <span className="text-xs font-bold text-slate-200 truncate max-w-[100px]">{user?.name || 'Account'}</span>
                   <span className="text-[10px] text-slate-400 truncate max-w-[100px] font-mono-num">{user?.email}</span>
                 </div>
@@ -395,11 +395,11 @@ export const Navbar = ({
               </button>
             </div>
 
-            {/* 🍔 Mobile Hamburger Menu Button (Shown on mobile < md) */}
+            {/* 🍔 Hamburger Menu Button (Active on ALL Mobile & iPad / Tablet screens < 1024px) */}
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 rounded-xl bg-[#0a0f16] hover:bg-[#121b27] border border-[#1e2d42] text-slate-200 transition-colors cursor-pointer"
+              className="lg:hidden p-2 rounded-xl bg-[#0a0f16] hover:bg-[#121b27] border border-[#1e2d42] text-slate-200 transition-colors cursor-pointer flex items-center justify-center"
               title="Open Navigation Menu"
             >
               {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -410,7 +410,7 @@ export const Navbar = ({
         </div>
       </div>
 
-      {/* 📱 Slide-Down Mobile Drawer Menu */}
+      {/* 📱 Slide-Down Glass Drawer Menu (Mobile & iPad Viewports < 1024px) */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -418,17 +418,17 @@ export const Navbar = ({
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: 'easeInOut' }}
-            className="md:hidden border-t border-[#172334] bg-[#080d14]/98 backdrop-blur-3xl px-4 py-5 space-y-4 max-h-[85vh] overflow-y-auto"
+            className="lg:hidden border-t border-[#172334] bg-[#080d14]/98 backdrop-blur-3xl px-4 sm:px-6 py-5 space-y-4 max-h-[85vh] overflow-y-auto"
           >
             {/* User Profile Card */}
-            <div className="p-3.5 rounded-2xl bg-[#0d1420] border border-[#22344a] flex items-center justify-between">
+            <div className="p-3.5 sm:p-4 rounded-2xl bg-[#0d1420] border border-[#22344a] flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-700 to-slate-900 border border-emerald-500/30 flex items-center justify-center text-emerald-300 font-bold text-sm font-display">
-                  {user?.name ? user.name.charAt(0).toUpperCase() : <UserIcon className="w-4 h-4" />}
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-700 to-slate-900 border border-emerald-500/30 flex items-center justify-center text-emerald-300 font-bold text-sm font-display">
+                  {user?.name ? user.name.charAt(0).toUpperCase() : <UserIcon className="w-5 h-5" />}
                 </div>
                 <div>
-                  <div className="font-bold text-xs text-white">{user?.name || 'Account'}</div>
-                  <div className="text-[10px] text-slate-400 font-mono-num truncate max-w-[170px]">{user?.email}</div>
+                  <div className="font-bold text-sm text-white">{user?.name || 'Account'}</div>
+                  <div className="text-xs text-slate-400 font-mono-num truncate max-w-[200px] sm:max-w-xs">{user?.email}</div>
                 </div>
               </div>
 
@@ -437,20 +437,20 @@ export const Navbar = ({
                   setIsMobileMenuOpen(false);
                   onOpenProfile();
                 }}
-                className="px-2.5 py-1 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/25 text-[11px] font-bold flex items-center space-x-1 cursor-pointer"
+                className="px-3 py-1.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/25 text-xs font-bold flex items-center space-x-1.5 cursor-pointer"
               >
-                <Settings className="w-3 h-3" />
-                <span>Edit</span>
+                <Settings className="w-3.5 h-3.5" />
+                <span>Settings</span>
               </button>
             </div>
 
             {/* Fiscal Period Selector */}
             <div>
-              <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5 font-display">
+              <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 font-display">
                 Select Fiscal Period
               </label>
-              <div className="grid grid-cols-2 gap-1.5">
-                {monthOptions.slice(0, 6).map((opt) => {
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+                {monthOptions.slice(0, 8).map((opt) => {
                   const isSelected = opt.val === selectedMonth;
                   return (
                     <button
@@ -459,14 +459,14 @@ export const Navbar = ({
                         setSelectedMonth(opt.val);
                         setIsMobileMenuOpen(false);
                       }}
-                      className={`p-2 rounded-xl text-xs font-semibold flex items-center justify-between border transition-all cursor-pointer ${
+                      className={`p-2.5 rounded-xl text-xs font-semibold flex items-center justify-between border transition-all cursor-pointer ${
                         isSelected
                           ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40 font-bold'
-                          : 'bg-[#0a0f16] text-slate-300 border-[#1a2636]'
+                          : 'bg-[#0a0f16] text-slate-300 border-[#1a2636] hover:bg-[#121c2a]'
                       }`}
                     >
                       <span>{opt.label}</span>
-                      {isSelected && <Check className="w-3 h-3 text-emerald-400" />}
+                      {isSelected && <Check className="w-3.5 h-3.5 text-emerald-400" />}
                     </button>
                   );
                 })}
@@ -475,10 +475,10 @@ export const Navbar = ({
 
             {/* Currency Selector */}
             <div>
-              <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5 font-display">
+              <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 font-display">
                 Active Portfolio Currency
               </label>
-              <div className="grid grid-cols-3 sm:grid-cols-4 gap-1.5">
+              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-2">
                 {Object.values(currencies).map((curr) => {
                   const isSelected = curr.code === currency;
                   return (
@@ -488,14 +488,14 @@ export const Navbar = ({
                         setCurrency(curr.code);
                         setIsMobileMenuOpen(false);
                       }}
-                      className={`p-2 rounded-xl text-xs font-semibold flex flex-col items-center justify-center border transition-all cursor-pointer ${
+                      className={`p-2.5 rounded-xl text-xs font-semibold flex flex-col items-center justify-center border transition-all cursor-pointer ${
                         isSelected
                           ? 'bg-yellow-500/20 text-yellow-300 border-yellow-500/40 font-bold shadow-sm'
-                          : 'bg-[#0a0f16] text-slate-300 border-[#1a2636]'
+                          : 'bg-[#0a0f16] text-slate-300 border-[#1a2636] hover:bg-[#121c2a]'
                       }`}
                     >
-                      <span className="text-yellow-400 font-mono-num font-bold text-xs">{curr.symbol}</span>
-                      <span className="text-[10px]">{curr.code}</span>
+                      <span className="text-yellow-400 font-mono-num font-bold text-sm">{curr.symbol}</span>
+                      <span className="text-[10px] mt-0.5">{curr.code}</span>
                     </button>
                   );
                 })}
@@ -503,14 +503,14 @@ export const Navbar = ({
             </div>
 
             {/* Quick Actions & Logout */}
-            <div className="pt-2 border-t border-[#1a2636] space-y-2">
+            <div className="pt-2 border-t border-[#1a2636] flex flex-col sm:flex-row gap-2">
               <button
                 onClick={handleSeed}
                 disabled={isSeeding}
-                className="w-full py-2.5 rounded-xl bg-[#0a0f16] hover:bg-[#121b27] border border-yellow-500/30 text-xs font-bold text-yellow-300 flex items-center justify-center space-x-2 transition-all cursor-pointer"
+                className="flex-1 py-2.5 rounded-xl bg-[#0a0f16] hover:bg-[#121b27] border border-yellow-500/30 text-xs font-bold text-yellow-300 flex items-center justify-center space-x-2 transition-all cursor-pointer"
               >
                 <Coins className={`w-3.5 h-3.5 text-yellow-400 ${isSeeding ? 'animate-spin' : ''}`} />
-                <span>{isSeeding ? 'Seeding 4 Months Data...' : 'Seed 4-Month Sample Ledger'}</span>
+                <span>{isSeeding ? 'Seeding 4 Months...' : 'Seed 4-Month Sample Ledger'}</span>
               </button>
 
               <button
@@ -518,7 +518,7 @@ export const Navbar = ({
                   setIsMobileMenuOpen(false);
                   logout();
                 }}
-                className="w-full py-2.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-xs font-bold text-rose-300 flex items-center justify-center space-x-2 transition-all cursor-pointer"
+                className="flex-1 py-2.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-xs font-bold text-rose-300 flex items-center justify-center space-x-2 transition-all cursor-pointer"
               >
                 <LogOut className="w-3.5 h-3.5 text-rose-400" />
                 <span>Disconnect Session</span>
